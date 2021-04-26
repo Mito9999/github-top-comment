@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "Auto Github Top Comment",
+  "version": "1.0",
+  "description": "Easily find the most liked comments/solutions a GitHub thread",
+  "content_scripts": [
+    {
+      "matches": [
+        "https://github.com/*/*/issues/*",
+        "https://github.com/*/*/issues/*?*"
+      ],
+      "js": ["index.js"]
+    }
+  ]
+}
