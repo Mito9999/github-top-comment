@@ -14,12 +14,22 @@ allReactionElements.forEach((reaction) => {
 
   // breaks on heart emoji:
   const reactionCount = Number(removeEmoji(text));
-  reactions.push(reactionCount);
+  reactions.push({ element: reaction, count: reactionCount });
 });
 
-console.log(
-  reactions
-    .filter((num) => !isNaN(num))
-    .sort((a, b) => a - b)
-    .pop()
-);
+const climbUpDomTree = (HTMLElement, count) => {
+  if (count <= 0) return HTMLElement;
+  return climbUpDomTree(HTMLElement.parentElement, count - 1);
+};
+
+const bestComment = reactions
+  .filter((obj) => !isNaN(obj.count))
+  .sort((a, b) => a.count - b.count)
+  .pop();
+
+console.log(climbUpDomTree(bestComment.element, 5));
+setTimeout(() => {
+  // Goes to the card element around the reaction, scrolls to it, then adds 60px offset due to header, and 15px offset for good measure
+  climbUpDomTree(bestComment.element, 5).scrollIntoView();
+  window.scrollBy(0, -75);
+}, 1000);
