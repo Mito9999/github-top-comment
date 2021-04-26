@@ -1,15 +1,14 @@
 {
-  "manifest_version": 3,
+  "manifest_version": 2,
   "name": "Auto Github Top Comment",
   "version": "1.0",
   "description": "Easily find the most liked comments/solutions a GitHub thread",
-  "content_scripts": [
-    {
-      "matches": [
-        "https://github.com/*/*/issues/*",
-        "https://github.com/*/*/issues/*?*"
-      ],
-      "js": ["index.js"]
-    }
-  ]
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": true
+  },
+  "browser_action": {
+    "default_title": "Default Title"
+  },
+  "permissions": ["activeTab"]
 }
