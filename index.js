@@ -2,7 +2,7 @@
   try {
     const reactions = [];
     const reactionsPath = 'div > div.edit-comment-hide > div > form > div > button';
-    const emojiRegex = /([\u2764]|[\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g;
+    const emojiRegex = /[^\x00-\x7F]/g;
     const allReactionElements = document.querySelectorAll(reactionsPath);
 
     const removeSpaces = (string) => string.trim().replaceAll(' ', '');
@@ -14,10 +14,11 @@
     allReactionElements.forEach((reaction) => {
       const text = format(reaction.textContent);
 
-      // Breaks on heart emoji:
       const reactionCount = Number(removeEmoji(text));
       reactions.push({ element: reaction, count: reactionCount });
     });
+
+    console.log(reactions);
 
     const climbUpDomTree = (HTMLElement, count) => {
       if (count <= 0) return HTMLElement;
