@@ -8,7 +8,7 @@
     "persistent": true
   },
   "browser_action": {
-    "default_title": "Default Title"
+    "default_title": "Auto Github Top Comment"
   },
   "permissions": ["activeTab"]
 }
